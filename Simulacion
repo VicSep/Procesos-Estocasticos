@@ -1,0 +1,25 @@
+simulacion<-function(lambda,mue)
+{
+  A<-lambda/mue                            # trafico ofrecido
+  
+  resultado<-0                             # variable que suma todo los valores de las probabilidades obtenidas
+  vec<-c()                                 # vector que guarda cada una de las probabilidades obtenidas
+  b<-c()                                   # vector que guarda el tiempo de cada uno de los clientes
+  for (i in 1:lambda) {
+    rn<-((exp(-A))*A^i)/factorial(i)       # calcula la probabilidad 
+    e<-(1/mue)*exp(-i/mue)                 # calcula el tiempo  de cada cliente
+    b[i]<-e                                # guarda los tiempos obtenidos en el vector
+    print(rn)                              # se imprime cada probabilidad calculada
+    resultado<-resultado + rn              # se suma toda las probabilidades
+    vec[i]<-rn                             # guarda las probabilidades obtenidas en el vector
+    
+  }
+  #se imprime el resultado de la suma de las probabilidades
+    cat("El resultado de la suma de las probabilidades es :",resultado,"\n")
+  
+  #se grafica los valores de las probabilidades
+    plot(vec)                               
+ 
+  #se grafica los valores del tiempo esperado por cada cliente
+    plot(b) 
+}
